@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -59,8 +61,7 @@ namespace UnityEngine.UI {
 		public static GameObject CreateUIElementRoot(string name, Vector2 size) {
 			GameObject go = new GameObject(name);
 			RectTransform rect = go.AddComponent<RectTransform> ();
-			if (size != null)
-				rect.sizeDelta = size; 
+			rect.sizeDelta = size; 
 			return go;
 		}
 
@@ -112,10 +113,20 @@ namespace UnityEngine.UI {
 			colors.disabledColor    = new Color(0.521f, 0.521f, 0.521f);
 		}
 
+		#if UNITY_EDITOR
+		#else
+		public sealed class MenuCommand {
+			public Object context;
+			public int userData;
+
+		}
+		#endif
+
 		/// <summary>
 		/// 放置UI对象到UI层Canvas中
 		/// </summary>
 		public static void PlaceUIElementRoot(GameObject element, MenuCommand menuCommand) {
+			#if UNITY_EDITOR
 			GameObject parent = menuCommand.context as GameObject;
 			if (parent == null || parent.GetComponentInParent<Canvas>() == null) {
 				parent = GetOrCreateCanvasGameObject();
@@ -130,6 +141,7 @@ namespace UnityEngine.UI {
 				SetPositionVisibleinSceneView(parent.GetComponent<RectTransform>(), element.GetComponent<RectTransform>());
 
 			Selection.activeGameObject = element;
+			#endif
 		}
 
 		/// <summary>
@@ -143,8 +155,9 @@ namespace UnityEngine.UI {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			root.AddComponent<CanvasScaler>();
 			root.AddComponent<GraphicRaycaster>();
+			#if UNITY_EDITOR
 			Undo.RegisterCreatedObjectUndo(root, "Create " + root.name);
-
+			#endif
 			// if there is no event system add one...
 			CreateEventSystem(false);
 			return root;
@@ -159,10 +172,11 @@ namespace UnityEngine.UI {
 		}
 
 		/// <summary>
-		/// 创建UI事件系统
+		/// 创建UI事件系统 (在非 UNITY_EDITOR 时不执行任何操作)
 		/// </summary>
 		/// <param name="select">是否选中</param>
 		public static void CreateEventSystem(bool select, GameObject parent) {
+			#if UNITY_EDITOR
 			var esys = Object.FindObjectOfType<EventSystem>();
 			if (esys == null) {
 				var eventSystem = new GameObject("EventSystem");
@@ -176,6 +190,7 @@ namespace UnityEngine.UI {
 			if (select && esys != null)	{
 				Selection.activeGameObject = esys.gameObject;
 			}
+			#endif
 		}
 
 		/// <summary>
@@ -187,9 +202,10 @@ namespace UnityEngine.UI {
 		}
 
 		/// <summary>
-		/// 创建或返回一个现存的UI Canvas对象
+		/// 创建或返回一个现存的UI Canvas对象 (在非 UNITY_EDITOR 时返回null)
 		/// </summary>
 		public static GameObject GetOrCreateCanvasGameObject() {
+			#if UNITY_EDITOR
 			GameObject selectedGo = Selection.activeGameObject;
 
 			// Try to find a gameobject that is the selected GO or one if its parents.
@@ -204,8 +220,12 @@ namespace UnityEngine.UI {
 
 			// No canvas in the scene at all? Then create a new one.
 			return CreateNewUI();
+			#else
+			return null;
+			#endif
 		}
 
+		#if UNITY_EDITOR
 		private static void SetPositionVisibleinSceneView(RectTransform canvasRTransform, RectTransform itemTransform) {
 			// Find the best scene view
 			SceneView sceneView = SceneView.lastActiveSceneView;
@@ -249,6 +269,7 @@ namespace UnityEngine.UI {
 			itemTransform.localRotation = Quaternion.identity;
 			itemTransform.localScale = Vector3.one;
 		}
+		#endif
 
 	}
 

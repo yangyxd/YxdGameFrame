@@ -168,7 +168,7 @@ namespace UnityEngine.UI
 			}
 			if (v == null && transform.childCount > 0) {
 				GameObject obj = transform.GetChild (0).gameObject;
-				v = f.gameObject.GetComponent<Text>();
+				v = obj.GetComponent<Text>();
 			}
 			return v;
 		}
