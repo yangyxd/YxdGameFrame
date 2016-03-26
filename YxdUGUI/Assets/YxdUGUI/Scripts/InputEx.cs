@@ -1,4 +1,4 @@
-﻿#if UNITY_STANDALONE // || UNITY_EDITOR
+﻿#if UNITY_STANDALONE || UNITY_EDITOR
 #else
 #define USE_INPUT_EX  // 定义使用InputEx
 #endif
@@ -112,11 +112,13 @@ public class InputEx : MonoBehaviour {
 		#endif
 	}
 
+	#if USE_INPUT_EX
 	private static float GetAxisValue(float lastTime) {
 		float v = (Time.time - lastTimeH) * 1.2f;
 		if (v > 1) v = 1;
 		return v;
 	}
+	#endif
 
 	public static float GetAxis(string axisName) {
 		#if USE_INPUT_EX

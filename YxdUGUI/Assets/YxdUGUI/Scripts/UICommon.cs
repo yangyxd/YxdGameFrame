@@ -17,8 +17,8 @@ namespace UnityEngine.UI {
 	/// </summary>
 	public class UICommon {
 		private const string kUILayerName = "UI";
-		private static Color   s_PanelColor             = new Color(1f, 1f, 1f, 0.392f);
-		private static Color   s_TextColor              = new Color(50f / 255f, 50f / 255f, 50f / 255f, 1f);
+		public static Color   s_PanelColor             = new Color(1f, 1f, 1f, 0.392f);
+		public static Color   s_TextColor              = new Color(50f / 255f, 50f / 255f, 50f / 255f, 1f);
 
 		/// <summary>
 		/// 设置父级对齐方式
@@ -269,8 +269,64 @@ namespace UnityEngine.UI {
 			itemTransform.localRotation = Quaternion.identity;
 			itemTransform.localScale = Vector3.one;
 		}
-		#endif
+        #endif
 
-	}
+        #if UNITY_EDITOR
+        /// <summary>
+        /// 创建 ListView 控件
+        /// </summary>
+        /// <param name="menuCmd"></param>
+        [MenuItem("GameObject/UI/ListView")]
+        static void CreateListView(MenuCommand menuCmd) {
+            // 创建游戏对象
+            float w = 220f;
+            float h = 240f;
+            GameObject view = UICommon.CreateUIElementRoot("ListView", w, h);
+            view.AddComponent<CanvasRenderer>();
+
+            Image img = view.AddComponent<Image>();
+            img.color = UICommon.s_PanelColor;
+            img.fillCenter = true;
+            img.raycastTarget = true;
+            img.sprite = Common.findRes<Sprite>("Background");
+            img.type = Image.Type.Sliced;
+
+            ScrollRect scroll = view.AddComponent<ScrollRect>();
+            scroll.horizontal = true;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+            scroll.elasticity = 0.1f;
+            scroll.inertia = true;
+            scroll.decelerationRate = 0.135f;
+            scroll.scrollSensitivity = 1;
+
+            GameObject Items = new GameObject("Items");
+            Items.transform.SetParent(view.transform, false);
+            RectTransform ItemsRect = Items.AddComponent<RectTransform>();
+            ItemsRect.anchorMin = Vector2.zero;
+            ItemsRect.anchorMax = Vector2.one;
+            ItemsRect.anchoredPosition = Vector2.zero;
+            ItemsRect.sizeDelta = Vector2.zero;
+            Items.AddComponent<CanvasRenderer>();
+            img = Items.AddComponent<Image>();
+            img.color = new Color(255, 255, 255, 0);
+
+            scroll.content = Items.GetComponent<RectTransform>();
+
+            ListViewLayoutGroup lay = Items.AddComponent<ListViewLayoutGroup>();
+            lay.itemHeight = 100;
+            lay.itemWidth = 100;
+            lay.direction = ListViewLayoutGroup.ListDirection.vertical;
+            lay.padding = new RectOffset(0, 0, 0, 0);
+
+            Mask mask = view.AddComponent<Mask>();
+            mask.showMaskGraphic = true;
+
+            // 放入到UI Canvas中
+            UICommon.PlaceUIElementRoot(view, menuCmd);
+        }
+        #endif
+
+    }
 
 }
