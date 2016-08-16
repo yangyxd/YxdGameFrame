@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{F151015D-681C-94CF-5CB0-1F62E8747E21}") = "YxdGameFrame", "Assembly-CSharp.csproj", "{F8A2CAEB-80C9-F947-48C1-4337FED0A843}"
+EndProject
+Project("{F151015D-681C-94CF-5CB0-1F62E8747E21}") = "YxdGameFrame", "Assembly-CSharp-Editor.csproj", "{4AD81C19-6571-AB8D-18CF-914EFB5D1854}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8A2CAEB-80C9-F947-48C1-4337FED0A843}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8A2CAEB-80C9-F947-48C1-4337FED0A843}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8A2CAEB-80C9-F947-48C1-4337FED0A843}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8A2CAEB-80C9-F947-48C1-4337FED0A843}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AD81C19-6571-AB8D-18CF-914EFB5D1854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD81C19-6571-AB8D-18CF-914EFB5D1854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD81C19-6571-AB8D-18CF-914EFB5D1854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD81C19-6571-AB8D-18CF-914EFB5D1854}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

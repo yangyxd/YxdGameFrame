@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{1FEDEEC1-31B0-00DA-D43F-5C399B1A9B49}") = "YxdUGUI", "Assembly-CSharp.csproj", "{99C80F08-C2A4-834D-CE1D-16EB326943C6}"
+EndProject
+Project("{1FEDEEC1-31B0-00DA-D43F-5C399B1A9B49}") = "YxdUGUI", "Assembly-CSharp-Editor.csproj", "{212AE8B6-066F-C3ED-1E3F-2CB09E0DD07B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99C80F08-C2A4-834D-CE1D-16EB326943C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C80F08-C2A4-834D-CE1D-16EB326943C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C80F08-C2A4-834D-CE1D-16EB326943C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C80F08-C2A4-834D-CE1D-16EB326943C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{212AE8B6-066F-C3ED-1E3F-2CB09E0DD07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{212AE8B6-066F-C3ED-1E3F-2CB09E0DD07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{212AE8B6-066F-C3ED-1E3F-2CB09E0DD07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{212AE8B6-066F-C3ED-1E3F-2CB09E0DD07B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
