@@ -42,6 +42,16 @@ namespace GameFrame {
 
 		protected virtual void Awake() {
 			this.LOG (this.GetComponent<T> ().GetType ().Name + " Awake.");
+			if (_Instance == null)
+				_Instance = this as T;
+			else {
+				GameObject.Destroy (_Instance);
+				_Instance = this as T;
+			}
+		}
+
+		public override void DoDestroy () {
+			_Instance = null;
 		}
 
 		void OnApplicationQuit() {

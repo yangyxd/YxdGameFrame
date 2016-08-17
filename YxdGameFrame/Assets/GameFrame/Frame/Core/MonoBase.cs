@@ -18,8 +18,12 @@ namespace GameFrame {
 		/// </summary>
 		public abstract void ProcessMsg (IMsgPack msg);
 
+		public virtual void DoDestroy () {
+		}
+
 		void OnDestroy() {			
 			UnRegAllMsg ();
+			DoDestroy ();
 		}
 
 		/// <summary>

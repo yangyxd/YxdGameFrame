@@ -13,7 +13,7 @@ namespace GameFrame {
 	public class SingletonMonoEntire<T> : SingletonMono<T> where T : Component {
 
 		protected override void Awake() {
-			base.Awake ();	        
+			this.LOG (this.GetComponent<T> ().GetType ().Name + " Awake.");
 			// 如果单例为空，将当前对象赋值给它
 			if (_Instance == null) {
 				_Instance = this as T;
